@@ -1,0 +1,3 @@
+<?php
+session_start(); include_once 'dbconnect.php'; if (!isset($_SESSION['userSession'])) { header("Location: index.php"); } ?> <?php
+ header("Content-type: text/html; charset=utf-8"); $post_id =$_GET['post_id']; mysqli_set_charset($MySQLi_CON,"utf8"); $sql2 = "DELETE FROM gists_posts WHERE id=".$post_id.""; if ($MySQLi_CON->query($sql2) === TRUE) { header("Location: {$_SERVER['HTTP_REFERER']}"); exit; } else { echo "Error deleting record: " . $MySQLi_CON->error; } ?>
