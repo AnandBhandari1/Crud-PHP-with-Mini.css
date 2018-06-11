@@ -1,0 +1,2 @@
+<?php
+ include_once '../../dbconnect.php'; $count = $_GET['count']; if (!isset($count)||$count=="") { $count=0; } header('Content-type: application/json;charset=utf-8'); mysqli_set_charset($MySQLi_CON,"utfmb4"); $sql = "select * from quotes_content  order by id desc limit 10 offset $count "; $count=0; if($result = mysqli_query($MySQLi_CON, $sql)){ if(mysqli_num_rows($result) > 0){ while($row = mysqli_fetch_assoc($result)){ $resultarray[] = $row; } } } echo json_encode($resultarray); ?>
